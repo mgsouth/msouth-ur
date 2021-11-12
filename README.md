@@ -3,12 +3,14 @@
 This project was a take-home code test. I don't want to just cut-and-paste
 the requirements, but the ask was for a RESTful short-URI app. The user could
 submit URLs and get back a short-form, be redirected through the short-form,
-and get a list of sll existing short URLs including time since creation and
+and get a list of all existing short URLs including time since creation and
 targets. Needed to include instructions to install, test, and run (this
 document). Deployment was not required.
 
 I hadn't used Flask before, but it was part of the requestor's tech stack.
 It's a decent little web service framework, not too hard to pick up.
+
+Note: I think returning an absolute time would be much preferable to returning a difference from "now", but that was the ask.
 
 # Installation & Setup, Linux or macOS:
 
