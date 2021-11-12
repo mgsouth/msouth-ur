@@ -30,12 +30,14 @@ Clear out the saved short urls:
 
 # Examples
 
+The user creates URL shortcuts by sending RESTful POSTs to the server's "../redirs/" endpoint; the JSON response will have the resulting short URL (or an error). The user can then send a GET or POST to the same server, which will respond with a redirect to the desired endpoint. The user can also get a list of all existing shortcuts by doing a GET on the ".../redirs/" endpoint.
+
 In a terminal session:
 
     $ export FLASK_ENV=development
     $ python ur.py
 
-In a separate terminal session:
+Now, create a short-URL. We'll use a curl POST. In a separate terminal session:
 
     $ curl -i -d '{"long_url": "http://whatever.com"}' 'http://127.0.0.1:5000/redirs/'
 
@@ -93,7 +95,7 @@ In a separate terminal session:
         
 -----
 
-In the following, we need the -L so that curl will actually follow the redirect.
+Now we can send a GET to the short URL, and we will be recdirected to the Wikipedia page. In the following, we need the -L so that curl will actually follow the redirect.
 
     $ curl -i -L http://127.0.0.1:5000/D
 =>
@@ -119,7 +121,7 @@ In the following, we need the -L so that curl will actually follow the redirect.
         
 ## Shortened POST:
 
-So meta... but it's a handy site which accepts POSTs
+It can be a little difficult finding a short example of a site accepting a POST. So we'll be meta and use the short-URL service itself as an example. We'll set it up so that it creates a double-redirection; the first one points to another short-URL, and then following *that* redirection goes to the final endpoint.
 
     $ curl -i -d '{"long_url": "http://127.0.0.1:5000/redirs/"}' 'http://127.0.0.1:5000/redirs/'
 
